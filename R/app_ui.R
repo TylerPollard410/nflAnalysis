@@ -2,8 +2,6 @@
 #'
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
-#' Load Libraries
-#' @import shiny
 #' @import bs4Dash
 #' @noRd
 library(shiny)
@@ -177,7 +175,6 @@ app_ui <- function(request) {
 #' This function is internally used to add external
 #' resources inside the Shiny application.
 #'
-#' @import shiny
 #' @import bs4Dash
 #' @importFrom golem add_resource_path activate_js favicon bundle_resources
 #' @noRd
