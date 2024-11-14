@@ -2,15 +2,56 @@
 #'
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
+#' Load Libraries
 #' @import shiny
 #' @noRd
+library(shiny)
+library(shinydashboard)
+library(bs4Dash)
+library(shinyWidgets)
+library(shinycssloaders)
+library(shinyjs)
+library(waiter)
+library(RColorBrewer)
+library(fresh)
+library(markdown)
+library(stringr)
+library(rvest)
+library(htmltools)
+library(gt)
+library(gtsummary)
+library(gtExtras)
+library(reactable)
+library(reactablefmtr)
+library(smplot2)
+library(patchwork)
+library(pracma)
+library(forecast)
+library(elo)
+library(MASS)
+library(bestNormalize)
+library(tictoc)
+library(caret)
+library(splines)
+library(mgcv)
+library(DescTools)
+library(car)
+library(bayesplot)
+library(BayesFactor)
+library(rstanarm)
+library(tidybayes)
+library(loo)
+library(brms)
+library(performance)
+library(nflverse)
+library(tidyverse)
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic
-    fluidPage(
-      golem::golem_welcome_page() # Remove this line to start building your UI
+    dashboardPage(
+      h4("NFL APP")
     )
   )
 }
