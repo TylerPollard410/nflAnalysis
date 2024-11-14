@@ -73,7 +73,7 @@ app_ui <- function(request) {
     dashboardPage(dark = NULL,
                   footer = dashboardFooter(left = br()),
                   freshTheme = my_theme,
-                  preloader = list(html = tagList(spin_1(), "Loading ..."), color = "#3c8dbc"),
+                  #preloader = list(html = tagList(spin_1(), "Loading ..."), color = "#3c8dbc"),
 
                   # Dahsboard Header ===============
                   header = dashboardHeader(
