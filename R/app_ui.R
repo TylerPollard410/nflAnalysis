@@ -102,13 +102,13 @@ app_ui <- function(request) {
                         notificationItem(
                           inputId = "info1",
                           text = "Developer: Tyler Pollard",
-                          icon = icon("users-cog"),
+                          icon = shiny::icon("users"),
                           status = "info"
                         ),
                         notificationItem(
                           inputId = "info2",
                           text = "Release Date: 20 Oct 2024",
-                          icon = icon("calendar"),
+                          icon = shiny::icon("calendar"),
                           status = "info"
                         ),
                         notificationItem(

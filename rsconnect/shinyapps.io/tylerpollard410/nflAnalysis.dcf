@@ -1,0 +1,10 @@
+name: nflAnalysis
+title: nflAnalysis
+username: tylerpollard410
+account: tylerpollard410
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13335652
+bundleId: 9361142
+url: https://tylerpollard410.shinyapps.io/nflAnalysis/
+version: 1

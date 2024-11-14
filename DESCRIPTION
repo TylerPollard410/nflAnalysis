@@ -32,6 +32,7 @@ Imports:
     nflverse,
     patchwork,
     performance,
+    pkgload,
     pracma,
     RColorBrewer,
     reactable,
