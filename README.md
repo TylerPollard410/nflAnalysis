@@ -4,6 +4,11 @@
 # `{nflAnalysis}`
 
 <!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test
+coverage](https://codecov.io/gh/TylerPollard410/nflAnalysis/branch/main/graph/badge.svg)](https://app.codecov.io/gh/TylerPollard410/nflAnalysis?branch=main)
 <!-- badges: end -->
 
 ## Installation
@@ -30,18 +35,17 @@ This README has been compiled on the
 
 ``` r
 Sys.time()
-#> [1] "2024-11-13 20:58:16 EST"
+#> [1] "2024-11-13 21:29:48 EST"
 ```
 
 Here are the tests results and package coverage:
 
 ``` r
 devtools::check(quiet = TRUE)
-#> ══ Documenting ═════════════════════════════════════════════════════════════════
-#> ℹ Installed roxygen2 version (7.3.1) doesn't match required (7.1.1)
-#> ✖ `check()` will not re-document this package
+#> Writing 'NAMESPACE'
+#> ℹ Loading nflAnalysis
 #> ── R CMD check results ────────────────────────────────── nflAnalysis 0.0.1 ────
-#> Duration: 19.4s
+#> Duration: 32.1s
 #> 
 #> ❯ checking DESCRIPTION meta-information ... NOTE
 #>   Malformed Description field: should contain one or more complete sentences.
@@ -51,8 +55,12 @@ devtools::check(quiet = TRUE)
 
 ``` r
 covr::package_coverage()
-#> nflAnalysis Coverage: 0.00%
-#> R/app_config.R: 0.00%
-#> R/app_ui.R: 0.00%
+#> nflAnalysis Coverage: 94.42%
 #> R/run_app.R: 0.00%
+#> R/app_config.R: 100.00%
+#> R/app_ui.R: 100.00%
+#> R/golem_utils_server.R: 100.00%
+#> R/golem_utils_ui.R: 100.00%
+#> R/mod_name_of_module1.R: 100.00%
+#> R/mod_name_of_module2.R: 100.00%
 ```
