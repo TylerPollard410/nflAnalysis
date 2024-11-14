@@ -6,6 +6,7 @@
 #'
 #' @export
 #' @importFrom shiny shinyApp
+#' @import bs4Dash
 #' @importFrom golem with_golem_options
 run_app <- function(
   onStart = NULL,

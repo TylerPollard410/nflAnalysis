@@ -3,6 +3,7 @@
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
 #' @import bs4Dash
+#' @import waiter
 #' @noRd
 library(shiny)
 library(shinydashboard)
@@ -72,7 +73,9 @@ app_ui <- function(request) {
     dashboardPage(dark = NULL,
                   footer = dashboardFooter(left = br()),
                   freshTheme = my_theme,
-                  #preloader = list(html = tagList(spin_1(), "Loading ..."), color = "#3c8dbc"),
+                  useWaiter(),
+                  useShinyjs(),
+                  preloader = list(html = tagList(spin_1(), "Loading ..."), color = "#3c8dbc"),
 
                   # Dahsboard Header ===============
                   header = dashboardHeader(
@@ -164,7 +167,197 @@ app_ui <- function(request) {
                   controlbar = dashboardControlbar(),
                   # Dashboard Body ================
                   body = dashboardBody(
-                    useShinyjs()
+                    useShinyjs(),
+                    tabItems(
+                      # Home Tab  ###############################################
+                      tabItem(
+                        tabName = "homeTab",
+                        h1("Welcome to the NFL Game Dashboard", align  = "center"),
+                        br(),
+                        box(width = 12, closable = FALSE, collapsible = FALSE, headerBorder = FALSE,
+                            fluidRow(column(width = 12, align = "center",
+                                            imageOutput("image"))
+                            ),
+                            withMathJax(),
+                            includeMarkdown("./_docs/Description.Rmd")
+                        ) # end box
+                      ), # close Home tab Item
+                      # Data Tab ################################################
+                      ## Standings Tab ##########################################
+                      tabItem(
+                        tabName = "standingsTab",
+                        #fluidPage(
+                        fluidRow(
+                          ##### Inputs ----
+                          ###### Season ----
+                          column(width = 1,
+                                 virtualSelectInput(
+                                   inputId = "standingsSeason",
+                                   label = "Select season",
+                                   choices = seq(2003, get_current_season()),
+                                   selected = get_current_season()
+                                   # options = pickerOptions(
+                                   #   container = "body",
+                                   #   style = "background-color: #eec900;"
+                                   # )
+                                 )
+                          ),
+                          ###### Table Stat ----
+                          column(width = 2,
+                                 radioGroupButtons(
+                                   inputId = "standingsStat",
+                                   label = "Table Statistic",
+                                   choices = c("Total", "Game"),
+                                   status = "info"
+                                 )
+                          ) # end column
+                        ), # end fluidRow
+                        ##### Season Table ----
+                        fluidRow(
+                          column(
+                            width = 6,
+                            withSpinner(
+                              gt_output(outputId = "standingsTableAFC"), type = 8
+                            )
+                          ), # end AFC column
+                          column(
+                            width = 6,
+                            withSpinner(
+                              gt_output(outputId = "standingsTableNFC"), type = 8
+                            )
+                          ) # end NFC column
+                        ), # end divsion standings row
+                        ##### Playoffs Table ----
+                        fluidRow(
+                          column(
+                            width = 6,
+                            withSpinner(
+                              gt_output(outputId = "standingsTableAFCplayoffs"), type = 8
+                            )
+                          ), # end AFC column
+                          column(
+                            width = 6,
+                            withSpinner(
+                              gt_output(outputId = "standingsTableNFCplayoffs"), type = 8
+                            )
+                          ) # end NFC column
+                        ) # end playoff standings row
+                        #) # end fluidPage
+                      ), # end Standings tabItem
+                      ## Scores Tab #############################################
+                      ## Team Tab ###############################################
+                      ### Team Offense ==========================================
+                      #### Overview ----
+                      #### Passing ----
+                      #### Rushing ----
+                      #### Conversions ----
+                      #### Drive Averages ----
+                      ### Team Defense ==========================================
+                      #### Overview ----
+                      #### Passing ----
+                      #### Rushing ----
+                      #### Conversions ----
+                      #### Drive Averages ----
+                      #### Against Position ----
+                      ### Team Special Teams ====================================
+                      #### Kick/Punt Returns ----
+                      #### Kicking ----
+                      #### Punting ----
+                      ### Team Scoring ==========================================
+                      #### Scoring For ----
+                      #### Scoring Against ----
+                      ## Player Tab  ############################################
+                      ### Player Offense ========================================
+                      tabItem(
+                        tabName = "playerOffenseTab",
+                        h2("Offensive Player Data"),
+                        tags$style(HTML(".vscomp-dropbox-container  {z-index:99999 !important;}")),
+                        #### Inputs ----
+                        fluidRow(
+                          ##### Season ----
+                          column(width = 3,
+                                 sliderTextInput(
+                                   inputId = "playerOffenseSeason",
+                                   label = "Select seasons",
+                                   choices = seq(2003, get_current_season()),
+                                   selected = c(get_current_season(),get_current_season())
+                                 )
+                          ),
+                          ##### Game Type ----
+                          column(width = 2,
+                                 prettyCheckboxGroup(
+                                   inputId = "playerOffenseGameType",
+                                   label = "Game Type",
+                                   choices = c("Regular Season" = "REG",
+                                               "Playoffs" = "POST"),
+                                   selected = "REG",
+                                   inline = FALSE,
+                                   status = "info",
+                                   fill = TRUE
+                                 )
+                          ),
+                          ##### Team ----
+                          column(width = 3,
+                                 virtualSelectInput(
+                                   inputId = "playerOffenseTeam",
+                                   label = "Select team to analyze",
+                                   choices = prepare_choices(
+                                     .data = teamsDataInput,
+                                     label = team_name,
+                                     value = team_abbr,
+                                     group_by = team_division
+                                   ),
+                                   multiple = TRUE,
+                                   selected = teamsDataInput$team_abbr,
+                                   showSelectedOptionsFirst = TRUE
+                                 )
+                          ),
+                          ##### Table Stat ----
+                          column(width = 2,
+                                 radioGroupButtons(
+                                   inputId = "playerOffenseStat",
+                                   label = "Table Statistic",
+                                   choices = c("Total", "Game"),
+                                   status = "info"
+                                 )
+                          ) # end column
+                        ), # end fluidRow
+                        tabsetPanel(
+                          tabPanel(
+                            title = "Overview"
+                          ),
+                          tabPanel(
+                            title = "Passing",
+                            withSpinner(
+                              reactableOutput(outputId = "playerOffensePassingTable"), type = 8
+                            )
+                          ),
+                          tabPanel(
+                            title = "Rushing"
+                          ),
+                          tabPanel(
+                            title = "Receiving"
+                          )
+                        )
+                      ) # end Player Offense tabItem
+                      #### Rushing ----
+                      #### Receiving ----
+                      #### Conversions ----
+                      ### Player Defense ========================================
+                      #### Overview ----
+                      ### Player Special Teams ==================================
+                      #### Kick/Punt Returns ----
+                      #### Kicking ----
+                      #### Punting ----
+                      ### Player Scoring ========================================
+                      #### Overview ----
+                      ### Player Fantasy ========================================
+                      #### Ranks ----
+                      # Betting Tab  ############################################
+
+
+                      # Prediction Tab  #########################################
+                    )
                   )
     )
   )
