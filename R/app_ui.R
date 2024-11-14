@@ -45,6 +45,26 @@ library(brms)
 library(performance)
 library(nflverse)
 library(tidyverse)
+
+# Input Filters ----
+teamsDataInput <- load_teams(current = TRUE) |>
+  select(team_abbr, team_name, team_conf, team_division) |>
+  arrange(team_division, team_name) |>
+  as.data.frame()
+
+
+# Set theme ====
+my_theme <- create_theme(
+  theme = "paper",
+  bs4dash_sidebar_dark(
+    bg = "#2d3b4d"
+  ),
+  bs4dash_status(
+    primary = "purple", info = "#eec900"
+  )
+)
+tags$style(".buttoncolor.bttn-primary{background-color: #6399b8")
+
 app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
