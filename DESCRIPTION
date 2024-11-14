@@ -5,20 +5,60 @@ Authors@R:
     person("Tyler", "Pollard", , "tylerpollard410@gmail.com", role = c("aut", "cre"))
 Description: Analyze and Visualize NFL Data
 License: MIT + file LICENSE
+URL: https://github.com/TylerPollard410/nflAnalysis
+BugReports: https://github.com/TylerPollard410/nflAnalysis/issues
 Imports: 
+    BayesFactor,
+    bayesplot,
+    bestNormalize,
+    brms,
+    bs4Dash,
+    car,
+    caret,
     config,
+    DescTools,
+    elo,
+    forecast,
+    fresh,
     golem,
-    shiny
+    gt,
+    gtExtras,
+    gtsummary,
+    htmltools,
+    loo,
+    markdown,
+    MASS,
+    mgcv,
+    nflverse,
+    patchwork,
+    performance,
+    pracma,
+    RColorBrewer,
+    reactable,
+    reactablefmtr,
+    rstanarm,
+    rvest,
+    shiny,
+    shinycssloaders,
+    shinydashboard,
+    shinyjs,
+    shinyWidgets,
+    smplot2,
+    splines,
+    stringr,
+    tictoc,
+    tidybayes,
+    tidyverse,
+    waiter
 Suggests: 
     knitr,
     rmarkdown,
     spelling,
     testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 LazyData: true
 RoxygenNote: 7.3.1
-VignetteBuilder: knitr
-URL: https://github.com/TylerPollard410/nflAnalysis
-BugReports: https://github.com/TylerPollard410/nflAnalysis/issues
