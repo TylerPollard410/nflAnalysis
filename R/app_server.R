@@ -4,8 +4,7 @@
 #'     DO NOT REMOVE.
 #' @import bs4Dash
 #' @noRd
-#'
-#'
+
 library(shiny)
 library(shinydashboard)
 library(bs4Dash)
@@ -47,7 +46,8 @@ library(performance)
 library(nflverse)
 library(tidyverse)
 
-# Read in Data ################################################################## Game Data ----
+# Read in Data ##################################################################
+## Game Data ----
 gameData <- load_schedules(seasons = 2003:most_recent_season())
 
 ## Play-by-play Data ----

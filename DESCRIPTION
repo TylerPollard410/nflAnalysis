@@ -7,6 +7,8 @@ Description: Analyze and Visualize NFL Data
 License: MIT + file LICENSE
 URL: https://github.com/TylerPollard410/nflAnalysis
 BugReports: https://github.com/TylerPollard410/nflAnalysis/issues
+Depends: 
+    R (>= 2.10)
 Imports: 
     BayesFactor,
     bayesplot,
@@ -32,7 +34,6 @@ Imports:
     nflverse,
     patchwork,
     performance,
-    pkgload,
     pracma,
     RColorBrewer,
     reactable,
@@ -63,5 +64,3 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 RoxygenNote: 7.3.1
-Depends: 
-    R (>= 2.10)
